@@ -1,7 +1,3 @@
-CREATE DATABASE dashboard_server;
-
-\c dashboard_server;
-
 CREATE TABLE companies (
   id SERIAL PRIMARY KEY,
   name VARCHAR(200) NOT NULL,
@@ -16,10 +12,10 @@ CREATE TABLE employees (
   hired_date DATE NOT NULL,
   age INTEGER NOT NULL,
   salary NUMERIC(14, 2) DEFAULT 0 NOT NULL,
-  company_id INTEGER NOT NULL REFERENCES companies.id ON DELETE CASCADE
+  company_id INTEGER NOT NULL REFERENCES companies(id) ON DELETE CASCADE
 );
 
-INSERT INTO companies (name, revenue, founded_date, employee_count) VALUES (
+INSERT INTO companies (name, revenue, founded_date, employee_count) VALUES 
   ('Yandex', 1100000.00, '1997-01-01', 2),  
   ('Kaspersky Lab', 49.00, '1997-01-01', 1),  
   ('VK', 119.00, '2018-11-20', 1),  
@@ -29,9 +25,8 @@ INSERT INTO companies (name, revenue, founded_date, employee_count) VALUES (
   ('ICS Holding', 264.67, '2010-01-01', 1),   
   ('Tinkoff Development Center', 32.93, '2006-01-01', 1),  
   ('Positive Technologies', 25.09, '2002-01-01', 2); 
-);
 
-INSERT INTO employees (full_name, hired_date, age, salary, company_id) (
+INSERT INTO employees (full_name, hired_date, age, salary, company_id) VALUES
   ('Ivan Petrov', '2020-03-15', 32, 85000.00, 1),
   ('Maria Ivanova', '2019-07-22', 28, 92000.00, 1),
   ('Sergei Smirnov', '2021-01-10', 35, 78000.00, 2),
@@ -43,7 +38,6 @@ INSERT INTO employees (full_name, hired_date, age, salary, company_id) (
   ('Mikhail Orlov', '2018-12-01', 38, 105000.00, 8),
   ('Anna Nikolaeva', '2022-03-08', 30, 88000.00, 9),
   ('Galina Alexandrova', '2022-03-08', 30, 88000.00, 9);
-);
 
 UPDATE companies SET employee_count = sub.cnt
 FROM (SELECT company_id, COUNT(*) AS cnt FROM employees GROUP BY company_id) AS sub
