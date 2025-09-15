@@ -25,15 +25,8 @@ const employeeModel = {
     return db.result('DELETE FROM employees WHERE id = $1', [id]); 
   },
 
-  async listWithCount(limit = 25, offset = 0) {
-    return db.task('get employees', async t => {
-      const rows = await t.any(`SELECT * FROM employees LIMIT = $1,
-         OFFSET = $2`, [limit, offset]);
-      const total = await t.one(`SELECT COUNT(*) AS count FROM employees`);
-      return {
-        rows, total: total.count
-      };
-    })
+  async listByCompany(companyId) {
+    return db.any('SELECT * FROM employees WHERE company_id = $1 ORDER BY id', [companyId]);
   }
 };
 
