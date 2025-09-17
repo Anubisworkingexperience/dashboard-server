@@ -18,6 +18,7 @@ const companyController = {
       const id = Number(req.params.id);
       const company = await companyModel.getById(id);
       if (!company) return res.status(404).json({error: 'Not found'});
+      res.json(company);
     }
     catch(err) {
       res.status(500).json({error: err.message});
@@ -49,8 +50,9 @@ const companyController = {
 
   list: async (req, res) => {
     try {
-      const limit = Number(req.query.limit) || 25;
+      const limit = Number(req.query.limit) || 9;
       const offset = Number(req.query.offset) || 0;
+      console.log(`limit is ${limit}, offset is ${offset}`);
       const result = await companyModel.listWithCount(limit, offset);
       res.json(result);
     }

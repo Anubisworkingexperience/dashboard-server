@@ -18,6 +18,7 @@ const employeeController = {
       const id = Number(req.params.id);
       const employee = await employeeModel.getById(id);
       if (!employee) return res.status(404).json({error: 'Not found'});
+      res.json(employee);
     }
     catch(err) {
       res.status(500).json({error: err.message});

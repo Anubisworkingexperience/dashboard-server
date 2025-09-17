@@ -26,11 +26,11 @@ const companyModel = {
 
   async listWithCount(limit = 25, offset = 0) {
     return db.task('get companies', async t => {
-      const rows = await t.any(`SELECT * FROM companies LIMIT = $1,
-         OFFSET = $2`, [limit, offset]);
+      const rows = await t.any(`SELECT * FROM companies LIMIT $1 OFFSET $2`, [limit, offset]);
       const total = await t.one(`SELECT COUNT(*) AS count FROM companies`);
       return {
-        rows, total: total.count
+        rows,
+        total: parseInt(total.count)
       };
     })
   }
