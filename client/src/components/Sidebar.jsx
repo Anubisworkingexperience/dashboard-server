@@ -6,7 +6,7 @@ export default function Sidebar() {
     <aside className={styles.sidebar}>
       <h2>Dashboard</h2>
       <ul>
-        <li className={styles.tableButton}>Таблицы</li>
+        <li className={styles.tableButton}> Таблицы</li>
         <li>Отчеты</li>
         <li>Настройки</li>
         <li>Профиль</li>

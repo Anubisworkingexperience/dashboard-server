@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { fetchEmployeesByCompany, createEmployee, updateEmployee, deleteEmployee } from '../api';
 import { themeQuartz } from 'ag-grid-community';
+import styles from '../styles/dashboard.module.css'
 
 export default function EmployeeGrid({ company }) {
   const [rowData, setRowData] = useState([]);
@@ -83,11 +84,13 @@ export default function EmployeeGrid({ company }) {
 
   return (
     <div>
-      <div style={{ marginBottom: 8 }}>
+      <div style={{ marginBottom: 8 }} className={styles.tableHeader}>
         <h6>Сотрудники</h6>
+        <div className={styles.buttonsPanelButtons}>
         <button onClick={handleAdd}>Добавить запись</button>{' '}
         <button onClick={handleEdit}>Изменить</button>{' '}
         <button onClick={handleDelete}>Удалить</button>
+        </div>
       </div>
 
       <div style={{ height: 300 }}>

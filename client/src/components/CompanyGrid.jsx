@@ -93,16 +93,16 @@ export default function CompanyGrid({ onSelectCompany }) {
 
   return (
     <div className={styles.buttonsPanel}>
-      <div style={{ marginBottom: 8 }}>
+      <div style={{ marginBottom: 8 }} className={styles.tableHeader}>
         <h6>Компании</h6>
-        <div className="buttonsPanelButtons">
+        <div className={styles.buttonsPanelButtons}>
           <button onClick={handleAdd}>Добавить запись</button>{' '}
           <button onClick={handleEdit}>Изменить</button>{' '}
           <button onClick={handleDelete}>Удалить</button>
         </div>
       </div>
 
-      <div style={{ height: 400 }}>
+      <div style={{ height: 400, backgroundColor: 'white'}}>
         <AgGridReact
           ref={gridRef}
           columnDefs={columnDefs}
