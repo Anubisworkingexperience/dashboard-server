@@ -11,7 +11,7 @@ export default function EmployeeGrid({ company }) {
     { field: 'id', width: 80 },
     { field: 'full_name', headerName: 'Name', flex: 1 },
     { field: 'salary' },
-    { field: 'hire_date', headerName: 'Hired' },
+    { field: 'hired_date', headerName: 'Hired' },
     { field: 'age' }
   ];
 
@@ -41,10 +41,10 @@ export default function EmployeeGrid({ company }) {
     const full_name = prompt('Полное имя сотрудника:');
     if (!full_name) return;
     const salary = parseFloat(prompt('Зарплата:', '0')) || 0;
-    const hire_date = prompt('Дата найма (YYYY-MM-DD):', '');
+    const hired_date = prompt('Дата найма (YYYY-MM-DD):', '');
     const age = parseInt(prompt('Возраст:', '30')) || null;
     try {
-      await createEmployee({ company_id: company.id, full_name, salary, hire_date, age });
+      await createEmployee({ company_id: company.id, full_name, salary, hired_date, age });
       loadEmployees(company.id);
     } catch (err) {
       console.error(err, 'Error creating employee');
@@ -56,10 +56,10 @@ export default function EmployeeGrid({ company }) {
     if (!selected) { alert('Выберите сотрудника!'); return; }
     const full_name = prompt('Полное имя сотрудника:', selected.full_name) || selected.full_name;
     const salary = parseFloat(prompt('Зарплата:', String(selected.salary))) || 0;
-    const hire_date = prompt('Дата найма(YYYY-MM-DD):', selected.hire_date) || selected.hire_date;
+    const hired_date = prompt('Дата найма(YYYY-MM-DD):', selected.hired_date) || selected.hired_date;
     const age = parseInt(prompt('Возраст:', String(selected.age))) || selected.age;
     try {
-      await updateEmployee(selected.id, { company_id: selected.company_id, full_name, salary, hire_date, age });
+      await updateEmployee(selected.id, { company_id: selected.company_id, full_name, salary, hired_date, age });
       loadEmployees(company.id);
     } catch (err) {
       console.error(err, 'Error updating');
