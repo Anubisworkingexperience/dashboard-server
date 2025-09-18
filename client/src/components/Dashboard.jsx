@@ -13,7 +13,6 @@ export default function Dashboard() {
       </div>
 
       <div className="panel">
-        {/* <h3>Сотрудники компании: {selectedCompany ? selectedCompany.name : '— (выберите компанию)'}</h3> */}
         <EmployeeGrid company={selectedCompany} />
       </div>
     </div>

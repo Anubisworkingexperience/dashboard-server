@@ -70,7 +70,6 @@ export default function CompanyGrid({ onSelectCompany }) {
     const employee_count = parseInt(prompt('Количество сотрудников:', String(selected.employee_count))) || 0;
     try {
       await updateCompany(selected.id, { name, revenue, founded_date, employee_count });
-      // gridApi.setDatasource(datasource);
       gridApi.refreshInfiniteCache();
     } catch (err) {
       console.error(err, 'Error updating');
@@ -83,7 +82,6 @@ export default function CompanyGrid({ onSelectCompany }) {
     if (!window.confirm('Удалить компанию?')) return;
     try {
       await deleteCompany(selected.id);
-      // gridApi.setDatasource(datasource);
       gridApi.refreshInfiniteCache();
       if (onSelectCompany) onSelectCompany(null);
     } catch (err) {
