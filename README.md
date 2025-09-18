@@ -36,7 +36,7 @@ npm install
 node app.js
 ```
 
-5. Запустите фронтенд
+5. Запустите клиент
 ```bash
 cd ../client
 npm install
