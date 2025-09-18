@@ -47,6 +47,7 @@ export default function EmployeeGrid({ company }) {
       await createEmployee({ company_id: company.id, full_name, salary, hired_date, age });
       loadEmployees(company.id);
     } catch (err) {
+      alert('Введены не все данные или они некорректны');
       console.error(err, 'Error creating employee');
     }
   };
@@ -62,6 +63,7 @@ export default function EmployeeGrid({ company }) {
       await updateEmployee(selected.id, { company_id: selected.company_id, full_name, salary, hired_date, age });
       loadEmployees(company.id);
     } catch (err) {
+      alert('Введены не все данные или они некорректны');
       console.error(err, 'Error updating');
     }
   };
@@ -74,6 +76,7 @@ export default function EmployeeGrid({ company }) {
       await deleteEmployee(selected.id);
       loadEmployees(company.id);
     } catch (err) {
+      alert('Ошибка удаления сотрудника');
       console.error(err, 'Error deleting');
     }
   };
@@ -81,12 +84,13 @@ export default function EmployeeGrid({ company }) {
   return (
     <div>
       <div style={{ marginBottom: 8 }}>
+        <h6>Сотрудники</h6>
         <button onClick={handleAdd}>Добавить запись</button>{' '}
         <button onClick={handleEdit}>Изменить</button>{' '}
         <button onClick={handleDelete}>Удалить</button>
       </div>
 
-      <div className="ag-theme-alpine" style={{ height: 300 }}>
+      <div style={{ height: 300 }}>
         <AgGridReact
         theme={themeQuartz}
           columnDefs={columnDefs}

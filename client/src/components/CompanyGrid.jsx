@@ -2,6 +2,7 @@ import React, { useRef, useState} from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { fetchCompanies, createCompany, updateCompany, deleteCompany } from '../api';
 import { ModuleRegistry, AllCommunityModule, themeQuartz, InfiniteRowModelModule } from 'ag-grid-community';
+import styles from '../styles/dashboard.module.css'
 
 ModuleRegistry.registerModules([AllCommunityModule, InfiniteRowModelModule]);
 
@@ -91,11 +92,14 @@ export default function CompanyGrid({ onSelectCompany }) {
   };
 
   return (
-    <div>
+    <div className={styles.buttonsPanel}>
       <div style={{ marginBottom: 8 }}>
-        <button onClick={handleAdd}>Добавить запись</button>{' '}
-        <button onClick={handleEdit}>Изменить</button>{' '}
-        <button onClick={handleDelete}>Удалить</button>
+        <h6>Компании</h6>
+        <div className="buttonsPanelButtons">
+          <button onClick={handleAdd}>Добавить запись</button>{' '}
+          <button onClick={handleEdit}>Изменить</button>{' '}
+          <button onClick={handleDelete}>Удалить</button>
+        </div>
       </div>
 
       <div style={{ height: 400 }}>

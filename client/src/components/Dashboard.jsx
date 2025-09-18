@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import CompanyGrid from './CompanyGrid';
 import EmployeeGrid from './EmployeeGrid';
-import styles from "../styles/dashboard.module.css";
 
 export default function Dashboard() {
   const [selectedCompany, setSelectedCompany] = useState(null);
 
   return (
     <div>
-      <h1>Компании и сотрудники</h1>
       <div className="panel">
         <CompanyGrid onSelectCompany={setSelectedCompany} />
       </div>
